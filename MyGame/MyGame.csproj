@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\lib\MoonWorks\MoonWorks.csproj" />
+    </ItemGroup>
+
+    <Import Project=".\CopyMoonlibs.targets" />
+    
+    <!--<ItemGroup>
+        <Content Include="..\Content\**\*.*">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>-->
+
+    <ItemGroup>
+        <None Include="..\Content\**\*.*" CopyToOutputDirectory="PreserveNewest" LinkBase="Content\" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ContentWithTargetPath Include="..\lib\FreeTypeSharp\Debug\net6.0\runtimes\win-x64\native\freetype.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>freetype.dll</TargetPath>
+        </ContentWithTargetPath>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Reference Include="FreeTypeSharp">
+            <HintPath>..\lib\FreeTypeSharp\Debug\net6.0\FreeTypeSharp.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+    </ItemGroup>
+    
+</Project>
